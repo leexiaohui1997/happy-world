@@ -43,14 +43,13 @@ COPY package.json pnpm-lock.yaml ./
 COPY pnpm-workspace.yaml ./
 COPY apps/backend/package.json ./apps/backend/
 
+# 从构建阶段复制构建结果
+COPY --from=base /app/apps/backend/dist ./apps/backend/dist
+# 复制生产环境配置
+COPY --from=base /app/apps/backend/.env ./apps/backend/.env.production
+
 # 只安装生产依赖
 RUN pnpm install --frozen-lockfile --prod --ignore-scripts
-
-# 从构建阶段复制构建结果
-COPY --from=base /app/apps/backend/dist ./dist
-# 复制生产环境配置
-COPY --from=base /app/apps/backend/.env ./.env.production
-COPY --from=base /app/apps/backend/package.json ./
 
 # 设置环境变量
 ENV NODE_ENV=production
@@ -59,4 +58,4 @@ ENV NODE_ENV=production
 EXPOSE 3000
 
 # 启动命令
-CMD ["pnpm", "run", "start:prod"]
+CMD ["pnpm", "-F", "backend", "run", "start:prod"]
