@@ -16,7 +16,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      - happy-world-network
+      - 1panel-network
 
   # 后端API服务
   backend:
@@ -48,7 +48,7 @@ services:
     volumes:
       - uploads_data:/app/uploads
     networks:
-      - happy-world-network
+      - 1panel-network
 
   # 前端Web服务
   frontend:
@@ -62,7 +62,7 @@ services:
     depends_on:
       - backend
     networks:
-      - happy-world-network
+      - 1panel-network
 
 volumes:
   mysql_data:
