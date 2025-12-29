@@ -56,7 +56,7 @@ services:
     container_name: happy-world-frontend
     restart: always
     ports:
-      - '80:80'
+      - '3030:80'
     depends_on:
       - backend
     networks:
