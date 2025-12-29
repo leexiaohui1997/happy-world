@@ -32,7 +32,7 @@ COPY apps/web/components.d.ts ./apps/web/
 COPY apps/web/.env ./apps/web/.env.production
 
 # 构建应用
-RUN pnpm run build --filter=web
+RUN cd apps/web && pnpm run build
 
 # 生产阶段 - 使用nginx提供静态文件服务
 FROM nginx:alpine AS production
