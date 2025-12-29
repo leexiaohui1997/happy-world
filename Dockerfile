@@ -18,7 +18,8 @@ COPY apps/backend/tsconfig.build.json ./apps/backend/
 COPY apps/backend/nest-cli.json ./apps/backend/
 
 # 安装依赖
-RUN HUSKY=0 pnpm install --frozen-lockfile
+ENV HUSKY=0
+RUN pnpm install --frozen-lockfile
 
 # 复制源代码
 COPY apps/backend/src ./apps/backend/src
@@ -44,7 +45,8 @@ COPY pnpm-workspace.yaml ./
 COPY apps/backend/package.json ./apps/backend/
 
 # 只安装生产依赖
-RUN HUSKY=0 pnpm install --frozen-lockfile --prod
+ENV HUSKY=0
+RUN pnpm install --frozen-lockfile --prod
 
 # 从构建阶段复制构建结果
 COPY --from=base /app/apps/backend/dist ./apps/backend/dist

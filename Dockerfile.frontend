@@ -19,7 +19,8 @@ COPY apps/web/tsconfig.node.json ./apps/web/
 COPY apps/web/vite.config.ts ./apps/web/
 
 # 安装依赖
-RUN HUSKY=0 pnpm install --frozen-lockfile
+ENV HUSKY=0
+RUN pnpm install --frozen-lockfile
 
 # 复制源代码
 COPY apps/web/src ./apps/web/src
