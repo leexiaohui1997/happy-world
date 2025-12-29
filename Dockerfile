@@ -27,7 +27,7 @@ COPY apps/backend/src ./apps/backend/src
 COPY apps/backend/.env ./apps/backend/
 
 # 构建应用
-RUN  cd apps/backend && pnpm run build && cd ../../
+RUN  cd apps/backend && pnpm run build
 
 # 生产阶段
 FROM node:20.19.5-alpine AS production
@@ -56,7 +56,7 @@ EXPOSE 3000
 ENV NODE_ENV=production
 
 # 复制生产环境配置
-RUN cp apps/backend/.env apps/backend/.env.production
+RUN cp /app/apps/backend/.env /app/apps/backend/.env.production
 
 # 启动命令
 CMD ["pnpm", "run", "start:prod"]
