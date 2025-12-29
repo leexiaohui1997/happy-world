@@ -48,12 +48,14 @@ RUN pnpm install --frozen-lockfile --prod --ignore-scripts
 
 # 从构建阶段复制构建结果
 COPY --from=base /app/apps/backend/dist ./apps/backend/dist
-
-# 暴露端口
-EXPOSE 3000
+# 复制生产环境配置
+COPY --from=base /app/apps/backend/.env ./apps/backend/.env.production
 
 # 设置环境变量
 ENV NODE_ENV=production
+
+# 暴露端口
+EXPOSE 3000
 
 # 启动命令
 CMD ["pnpm", "run", "start:prod"]
