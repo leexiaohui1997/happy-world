@@ -1,5 +1,4 @@
 import router from '@/router';
-import { useUserStore } from '@/stores/user';
 import type { AxiosInstance, AxiosResponse } from 'axios';
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
@@ -15,11 +14,11 @@ const service: AxiosInstance = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   config => {
-    const userStore = useUserStore();
-    // 如果有 token，添加到请求头
-    if (userStore.token) {
-      config.headers.Authorization = `Bearer ${userStore.token}`;
-    }
+    // const userStore = useUserStore();
+    // // 如果有 token，添加到请求头
+    // if (userStore.token) {
+    //   config.headers.Authorization = `Bearer ${userStore.token}`;
+    // }
     return config;
   },
   error => {
@@ -41,8 +40,8 @@ service.interceptors.response.use(
     // 处理 401 未授权错误
     if (response && response.status === 401) {
       // 401 错误表示令牌无效，清除本地状态
-      const userStore = useUserStore();
-      userStore.clearAuthState();
+      // const userStore = useUserStore();
+      // userStore.clearAuthState();
       router.push('/login');
       ElMessage.error('登录已过期，请重新登录');
     } else if (response && response.data && response.data.message) {
