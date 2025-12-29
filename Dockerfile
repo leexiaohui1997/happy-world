@@ -27,7 +27,7 @@ COPY apps/backend/src ./apps/backend/src
 COPY apps/backend/.env ./apps/backend/
 
 # 构建应用
-RUN  cd apps/backend && pnpm run build
+RUN  cd apps/backend && pnpm run build && cd ../../
 
 # 生产阶段
 FROM node:20.19.5-alpine AS production
