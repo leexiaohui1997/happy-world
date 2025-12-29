@@ -47,9 +47,10 @@ COPY apps/backend/package.json ./apps/backend/
 RUN pnpm install --frozen-lockfile --prod --ignore-scripts
 
 # 从构建阶段复制构建结果
-COPY --from=base /app/apps/backend/dist ./apps/backend/dist
+COPY --from=base /app/apps/backend/dist ./dist
 # 复制生产环境配置
-COPY --from=base /app/apps/backend/.env ./apps/backend/.env.production
+COPY --from=base /app/apps/backend/.env ./.env.production
+COPY --from=base /app/apps/backend/package.json ./
 
 # 设置环境变量
 ENV NODE_ENV=production
