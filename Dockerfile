@@ -27,7 +27,8 @@ COPY apps/backend/src ./apps/backend/src
 COPY apps/backend/.env ./apps/backend/
 
 # 构建应用
-RUN pnpm run build --filter=backend
+WORKDIR /app/apps/backend
+RUN pnpm run build
 
 # 生产阶段
 FROM node:20.19.5-alpine AS production
