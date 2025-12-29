@@ -44,7 +44,7 @@ COPY pnpm-workspace.yaml ./
 COPY apps/backend/package.json ./apps/backend/
 
 # 只安装生产依赖
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --prod --ignore-scripts
 
 # 从构建阶段复制构建结果
 COPY --from=base /app/apps/backend/dist ./apps/backend/dist
