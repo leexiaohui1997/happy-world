@@ -4,8 +4,8 @@ import { Area } from './area.entity';
 
 @Entity('globals')
 export class Global extends BaseEntity {
-  @Column({ unique: true })
-  name: string;
+  @Column({ nullable: true })
+  name?: string;
 
   @Column({ nullable: true })
   description?: string;

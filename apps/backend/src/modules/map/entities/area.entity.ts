@@ -5,8 +5,8 @@ import { Point } from './point.entity';
 
 @Entity('areas')
 export class Area extends BaseEntity {
-  @Column()
-  name: string;
+  @Column({ nullable: true })
+  name?: string;
 
   @ManyToOne(() => Global, global => global.areas)
   global: Global;
