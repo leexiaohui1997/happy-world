@@ -55,8 +55,5 @@ EXPOSE 3000
 # 设置环境变量
 ENV NODE_ENV=production
 
-# 复制生产环境配置
-RUN cp /app/apps/backend/.env /app/apps/backend/.env.production
-
 # 启动命令
 CMD ["pnpm", "run", "start:prod"]
