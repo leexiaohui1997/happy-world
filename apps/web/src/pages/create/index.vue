@@ -31,6 +31,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const formData = ref({
   characterName: '',
@@ -40,12 +43,17 @@ const formData = ref({
 
 const handleCreate = () => {
   // 创建角色的处理逻辑
+  // TODO: 这里应该调用 API 创建角色
   console.log('创建角色', formData.value);
+
+  // 创建成功后跳转到选择角色页面
+  // 实际项目中应该等待 API 响应成功后再跳转
+  router.push('/select');
 };
 
 const handleExisting = () => {
-  // 已有角色的处理逻辑
-  console.log('已有角色');
+  // 已有角色，跳转到选择角色页面
+  router.push('/select');
 };
 </script>
 

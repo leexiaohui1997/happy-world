@@ -6,9 +6,13 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 const handleEnter = () => {
-  // 进入世界的处理逻辑
-  console.log('进入世界');
+  // 进入世界，跳转到选择角色页面
+  router.push('/select');
 };
 </script>
 
