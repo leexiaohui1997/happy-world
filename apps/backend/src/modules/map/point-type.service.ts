@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreatePointTypeDto } from './dto/create-point-type.dto';
 import { PointType } from './entities/point-type.entity';
 
 @Injectable()
@@ -15,6 +16,16 @@ export class PointTypeService {
    */
   async findAll(): Promise<PointType[]> {
     return await this.pointTypeRepository.find();
+  }
+
+  /**
+   * 创建新地形
+   * @param createPointTypeDto 创建地形的DTO
+   * @returns 创建的地形对象
+   */
+  async create(createPointTypeDto: CreatePointTypeDto): Promise<PointType> {
+    const pointType = this.pointTypeRepository.create(createPointTypeDto);
+    return await this.pointTypeRepository.save(pointType);
   }
 
   /**
