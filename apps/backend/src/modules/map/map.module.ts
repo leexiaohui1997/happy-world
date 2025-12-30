@@ -4,7 +4,6 @@ import { Global } from './entities/global.entity';
 import { Area } from './entities/area.entity';
 import { PointType } from './entities/point-type.entity';
 import { Point } from './entities/point.entity';
-import { User } from '../user/entities/user.entity';
 import { GlobalService } from './global.service';
 import { GlobalController } from './global.controller';
 import { AreaService } from './area.service';
@@ -15,8 +14,9 @@ import { PointService } from './point.service';
 import { PointController } from './point.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Global, Area, PointType, Point, User])],
+  imports: [TypeOrmModule.forFeature([Global, Area, PointType, Point])],
   controllers: [GlobalController, AreaController, PointTypeController, PointController],
   providers: [GlobalService, AreaService, PointTypeService, PointService],
+  exports: [GlobalService, AreaService, PointTypeService, PointService], // 导出服务供其他模块使用
 })
 export class MapModule {}
