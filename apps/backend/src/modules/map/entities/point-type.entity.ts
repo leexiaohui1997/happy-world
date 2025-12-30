@@ -13,6 +13,10 @@ export class PointType extends BaseEntity {
   @Column({ nullable: true })
   icon?: string;
 
+  /** 生成概率，整数，默认值为1 */
+  @Column({ type: 'int', default: 1 })
+  rate: number;
+
   @OneToMany(() => Point, point => point.type)
   points: Point[];
 }
